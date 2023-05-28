@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import br.edu.fateczl.lista.listaObj.Lista;
 import model.Aluno;
 import model.Grupo;
 import model.Professor;
@@ -53,7 +54,12 @@ public class GrupoController  implements ActionListener{
 			}
 		}
 		if(cmd.equals("Buscar/grupo")) {
-			buscargrupo();
+			try {
+				buscargrupo();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		if(cmd.equals("Buscar/Professor")) {
 			try {
@@ -75,15 +81,13 @@ public class GrupoController  implements ActionListener{
 
 	private void buscarAluno() throws IOException {
 		Aluno al = new Aluno();
-		al.ra =txGrupoare.getText();
+		al.ra =txGrupora1.getText();
 		al = buscaAluno(al);
 		if(al.nome!=null) {
 			txGruponome1.setText(al.nome);
 		}else {
 			tfGrupotab.setText("Aluno não encontrado ");
 		}
-		
-		
 	}
 
 	private Aluno buscaAluno(Aluno al) throws IOException {
@@ -126,6 +130,9 @@ public class GrupoController  implements ActionListener{
 		
 		
 	}
+
+
+
 	private Professor buscaProfessor(Professor pf) throws IOException {
 		String path = System.getProperty("user.home") + File.separator +"Sistema de Cadastro";
 		File arq = new File(path,"Professor.csv");
@@ -153,21 +160,93 @@ public class GrupoController  implements ActionListener{
 	
 
 
-	private void buscargrupo() {
+	private void buscargrupo() throws Exception {
 		Grupo gr = new Grupo();
+		Lista aluno = new Lista();
+		aluno= buscaAluno(gr.ra);
+		
 		gr.cod =txGrupocod.getText();
 		gr = buscarGrupo(gr);
-		
-		
+		if(gr.nome!=null) {
+			tfGrupotab.setText("Grupo: "+ gr.cod+ "\t Professor : "+ gr.profnome + " Tema :"+ gr.tema);
+			
+		}else {
+			tfGrupotab.setText("Grupo não encontrado ");
+			
+		}
+		int tm =aluno.size();
+		StringBuffer buffer = new StringBuffer();
+		if(tm>0) {
+			for(int i=0; i<tm;i++) {
+				Grupo g = (Grupo) aluno.get(i);
+				buffer.append("Aluno ;" + g.nome+"\r\n");
+				
+			}
+			tfGrupotab.setText(buffer.toString());
+		}
 		
 	}
 
 
-	private Grupo buscarGrupo(Grupo gr) {
-		//String path = System.getProperty("user.home") + File.separator +"Sistema de Cadastro";
-		//File arq = new File(path,"Grupo.csv");
-		return null;
+	private Lista buscaAluno(String ra) throws IOException {
+		Grupo pr = new Grupo();
+		Lista aluno = new Lista();
+		String path = System.getProperty("user.home") + File.separator +"Sistema de Cadastro";
+		File arq = new File(path,"Grupo.csv");
+		if(arq.exists()&& arq.isFile()) {
+			FileInputStream fis = new FileInputStream(arq);
+			InputStreamReader isr =new InputStreamReader(fis);
+			BufferedReader buffer =new BufferedReader(isr);
+			String linha = buffer.readLine();
+			while(linha!=null) {
+				String [] vetlinha =linha.split(";");
+				
+				if(vetlinha[5].equals(ra)){
+					Grupo gr = new Grupo();
+					gr.nome =vetlinha[5];
+					
+				aluno.addFirst(gr);
+				}
+				linha=buffer.readLine();
+			}
+			buffer.close();
+			isr.close();
+			fis.close();
 	}
+		return aluno;
+	}
+	
+
+
+	private Grupo buscarGrupo(Grupo gr) throws IOException {
+		String path = System.getProperty("user.home") + File.separator +"Sistema de Cadastro";
+		File arq = new File(path,"Grupo.csv");
+		if(arq.exists()&& arq.isFile()) {
+			FileInputStream fis = new FileInputStream(arq);
+			InputStreamReader isr =new InputStreamReader(fis);
+			BufferedReader buffer =new BufferedReader(isr);
+			String linha = buffer.readLine();
+			while(linha!=null) {
+				String [] vetlinha =linha.split(";");
+				
+				if(vetlinha[0].equals(gr.cod)){
+					gr.profmatr = vetlinha[1];
+					gr.profnome = vetlinha[2];
+					gr.ra = vetlinha[4];
+					gr.nome =vetlinha[5];
+					gr.tema =vetlinha[3];
+					
+					break;
+				}
+				linha=buffer.readLine();
+			}
+			buffer.close();
+			isr.close();
+			fis.close();
+	}
+		return gr;
+	}
+	
 
 
 	private void cadastro() throws IOException {

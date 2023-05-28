@@ -13,5 +13,9 @@ public class Grupo {
 		return cod + ";"  + profmatr +  ";" +profnome  +  ";" + pfarea + ";"+ tema+
 				";" + nome+ ";" + ra+ ";";
 	}
+public String toString1() {
+	return "Grupo [nome=" + nome + "]";
+}
+
 	
 }

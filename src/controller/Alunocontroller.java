@@ -30,6 +30,10 @@ public Alunocontroller(JTextField tfAlunora, JTextField tfAlunonome, JTextArea t
 	this.tabAluno = tabAluno;
 }
 
+public Alunocontroller() {
+	// TODO Auto-generated constructor stub
+}
+
 @Override
 public void actionPerformed(ActionEvent e) {
 	String cmd = e.getActionCommand();
@@ -70,7 +74,7 @@ private void buscar() throws IOException {
 	
 }
 
-private Aluno buscaAluno(Aluno al) throws IOException {
+public Aluno buscaAluno(Aluno al) throws IOException {
 	String path = System.getProperty("user.home") + File.separator +"Sistema de Cadastro";
 	File arq = new File(path,"Aluno.csv");
 	if(arq.exists()&& arq.isFile()) {

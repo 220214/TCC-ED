@@ -71,7 +71,7 @@ public class ProfessorController implements ActionListener{
 		
 		
 	}
-	private Professor buscaProfessor(Professor pf) throws IOException {
+	public Professor buscaProfessor(Professor pf) throws IOException {
 		String path = System.getProperty("user.home") + File.separator +"Sistema de Cadastro";
 		File arq = new File(path,"Professor.csv");
 		if(arq.exists()&& arq.isFile()) {
