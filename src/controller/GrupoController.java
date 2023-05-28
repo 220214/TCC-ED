@@ -75,8 +75,79 @@ public class GrupoController  implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
+		if(cmd.equals("Limpar/Tela")) {
+			LimparTela();
+		}
 		
 	}
+
+
+	private void LimparTela() {
+		txGrupocod.setText("");
+		 txGrupomatr.setText("");
+		txGrupoprof.setText("");
+		txGrupoare.setText("");
+		txGrupotema.setText("");
+		txGrupora1.setText("");
+		txGruponome1.setText("");
+		tfGrupotab.setText("");
+		            
+	}
+
+
+	private void buscargrupo() throws Exception {
+	Lista p = new Lista();
+	Grupo gr = new Grupo ();
+	gr.cod = txGrupocod.getText();
+	
+	p = buscarGrupo(gr.cod);
+	int tm = p.size();
+	StringBuffer buffer = new StringBuffer();
+	if(tm>0) {
+	for(int i = 0 ; i< tm ;i++) {
+		Grupo g = (Grupo)p.get(i);
+		buffer.append("Cod " + g.cod+ "  Prof "+ g.profnome+ "  Tema: "+g.tema+"\n\r"+ " RA: "+ g.ra+ "  Nome:  "+ g.nome+ "\n\r");
+	}
+	tfGrupotab.setText(buffer.toString());
+	}
+}
+
+
+	private Lista buscarGrupo(String cod) throws IOException {
+		Lista grupo = new Lista ();
+		String path = System.getProperty("user.home") + File.separator +"Sistema de Cadastro";
+		File arq = new File(path,"Grupo.csv");
+		if(arq.exists()&& arq.isFile()) {
+			FileInputStream fis = new FileInputStream(arq);
+			InputStreamReader isr =new InputStreamReader(fis);
+			BufferedReader buffer =new BufferedReader(isr);
+			String linha = buffer.readLine();
+			while(linha!=null) {
+				String [] vetlinha =linha.split(";");
+				
+				if(vetlinha[0].equals(cod)){
+					Grupo gr = new Grupo();
+					gr.cod= vetlinha [0];
+					gr.profmatr = vetlinha[1];
+					gr.profnome = vetlinha[2];
+					gr.pfarea = vetlinha[3];
+					gr.tema =vetlinha[4];
+					gr.nome =vetlinha[5];
+					gr.ra = vetlinha[6];
+					
+					
+					
+					grupo.addFirst(gr);
+				}
+				linha=buffer.readLine();
+			}
+			buffer.close();
+			isr.close();
+			fis.close();
+	}
+		return grupo;
+	}
+	
 
 
 	private void buscarAluno() throws IOException {
@@ -160,96 +231,7 @@ public class GrupoController  implements ActionListener{
 	
 
 
-	private void buscargrupo() throws Exception {
-		Grupo gr = new Grupo();
-		Lista aluno = new Lista();
-		aluno= buscaAluno(gr.ra);
-		
-		gr.cod =txGrupocod.getText();
-		gr = buscarGrupo(gr);
-		if(gr.nome!=null) {
-			tfGrupotab.setText("Grupo: "+ gr.cod+ "\t Professor : "+ gr.profnome + " Tema :"+ gr.tema);
-			
-		}else {
-			tfGrupotab.setText("Grupo não encontrado ");
-			
-		}
-		int tm =aluno.size();
-		StringBuffer buffer = new StringBuffer();
-		if(tm>0) {
-			for(int i=0; i<tm;i++) {
-				Grupo g = (Grupo) aluno.get(i);
-				buffer.append("Aluno ;" + g.nome+"\r\n");
-				
-			}
-			tfGrupotab.setText(buffer.toString());
-		}
-		
-	}
-
-
-	private Lista buscaAluno(String ra) throws IOException {
-		Grupo pr = new Grupo();
-		Lista aluno = new Lista();
-		String path = System.getProperty("user.home") + File.separator +"Sistema de Cadastro";
-		File arq = new File(path,"Grupo.csv");
-		if(arq.exists()&& arq.isFile()) {
-			FileInputStream fis = new FileInputStream(arq);
-			InputStreamReader isr =new InputStreamReader(fis);
-			BufferedReader buffer =new BufferedReader(isr);
-			String linha = buffer.readLine();
-			while(linha!=null) {
-				String [] vetlinha =linha.split(";");
-				
-				if(vetlinha[5].equals(ra)){
-					Grupo gr = new Grupo();
-					gr.nome =vetlinha[5];
-					
-				aluno.addFirst(gr);
-				}
-				linha=buffer.readLine();
-			}
-			buffer.close();
-			isr.close();
-			fis.close();
-	}
-		return aluno;
-	}
-	
-
-
-	private Grupo buscarGrupo(Grupo gr) throws IOException {
-		String path = System.getProperty("user.home") + File.separator +"Sistema de Cadastro";
-		File arq = new File(path,"Grupo.csv");
-		if(arq.exists()&& arq.isFile()) {
-			FileInputStream fis = new FileInputStream(arq);
-			InputStreamReader isr =new InputStreamReader(fis);
-			BufferedReader buffer =new BufferedReader(isr);
-			String linha = buffer.readLine();
-			while(linha!=null) {
-				String [] vetlinha =linha.split(";");
-				
-				if(vetlinha[0].equals(gr.cod)){
-					gr.profmatr = vetlinha[1];
-					gr.profnome = vetlinha[2];
-					gr.ra = vetlinha[4];
-					gr.nome =vetlinha[5];
-					gr.tema =vetlinha[3];
-					
-					break;
-				}
-				linha=buffer.readLine();
-			}
-			buffer.close();
-			isr.close();
-			fis.close();
-	}
-		return gr;
-	}
-	
-
-
-	private void cadastro() throws IOException {
+		private void cadastro() throws IOException {
 		Grupo gr = new Grupo();
 		gr.cod = txGrupocod.getText();
 		gr.profmatr = txGrupomatr.getText();

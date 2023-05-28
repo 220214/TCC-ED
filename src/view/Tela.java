@@ -103,12 +103,6 @@ public class Tela extends JFrame {
 		btnAlunocadastrar.setBounds(453, 50, 100, 29);
 		TabAluno.add(btnAlunocadastrar);
 		
-		JButton btnAlunoExcluir = new JButton("Excluir");
-		btnAlunoExcluir.setForeground(new Color(255, 0, 0));
-		btnAlunoExcluir.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnAlunoExcluir.setBounds(489, 357, 100, 23);
-		TabAluno.add(btnAlunoExcluir);
-		
 		JButton btnAlunobuscar = new JButton("Buscar");
 		btnAlunobuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnAlunobuscar.setBounds(453, 103, 100, 29);
@@ -159,12 +153,6 @@ public class Tela extends JFrame {
 		btnProfessorBuscar.setBounds(469, 112, 107, 29);
 		TabProfessor.add(btnProfessorBuscar);
 		
-		JButton btnProfessorExcluir = new JButton("Excluir");
-		btnProfessorExcluir.setForeground(new Color(255, 0, 0));
-		btnProfessorExcluir.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnProfessorExcluir.setBounds(487, 357, 89, 23);
-		TabProfessor.add(btnProfessorExcluir);
-		
 		JScrollPane tabProfessor = new JScrollPane();
 		tabProfessor.setBounds(10, 164, 579, 154);
 		TabProfessor.add(tabProfessor);
@@ -185,8 +173,7 @@ public class Tela extends JFrame {
 	
 	Alunocontroller alc = new Alunocontroller(tfAlunora, tfAlunonome, taAlunolista);
 	btnAlunocadastrar.addActionListener(alc);
-	btnAlunobuscar.addActionListener(alc);	
-	btnAlunoExcluir.addActionListener(alc);
+	btnAlunobuscar.addActionListener(alc);
 	
 	ProfessorController pc = new ProfessorController(texProfessornome, textProfessorarea, texProfessorMatricula, taProfessorlista);
 	
@@ -245,7 +232,7 @@ public class Tela extends JFrame {
 	
 	tfGrupotablista = new JTextArea();
 	tfGrupotablista.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	tfGrupotablista.setBounds(10, 189, 578, 126);
+	tfGrupotablista.setBounds(10, 215, 578, 131);
 	tabGrupo.add(tfGrupotablista);
 	tfGrupotablista.setColumns(10);
 	
@@ -298,14 +285,17 @@ public class Tela extends JFrame {
 	btngrupobuscarprof.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	btngrupobuscarprof.setBounds(244, 46, 136, 23);
 	tabGrupo.add(btngrupobuscarprof);
+	
+	JButton btnGrupoLimpar = new JButton("Limpar/Tela");
+	btnGrupoLimpar.setBounds(462, 11, 112, 23);
+	tabGrupo.add(btnGrupoLimpar);
 	btnBuscarGrupo.addActionListener(gc);
 	btngrupobuscarprof.addActionListener(gc);
 	btnGrupoBuscarAluno.addActionListener(gc);
 	btnSalvarGrupo.addActionListener(gc);
-
+	btnGrupoLimpar.addActionListener(gc);
 	btnProfessorcadastro.addActionListener(pc);
 	btnProfessorBuscar.addActionListener(pc);
-	btnProfessorExcluir.addActionListener(pc);
 	
 
 	
