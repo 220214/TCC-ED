@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controller.Agendacontroller;
 import controller.Alunocontroller;
 import controller.GrupoController;
 import controller.ProfessorController;
@@ -23,6 +24,12 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JInternalFrame;
+import javax.swing.JDesktopPane;
+import javax.swing.JScrollBar;
+import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
 
 public class Tela extends JFrame {
 
@@ -41,6 +48,9 @@ public class Tela extends JFrame {
 	private JTextField texProfessorMatricula;
 	private JTextField tfgrupomatricula;
 	private JTextField texGruponome1;
+	private JTextField texAgendaCodGrupo;
+	private JTextField textAgendaData;
+	private JTextField textAgendaOrientação;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -230,11 +240,15 @@ public class Tela extends JFrame {
 	tabGrupo.add(txGrupotema);
 	txGrupotema.setColumns(10);
 	
+	JScrollPane scrollPane_2 = new JScrollPane();
+	scrollPane_2.setBounds(10, 215, 578, 131);
+	tabGrupo.add(scrollPane_2);
+	
 	tfGrupotablista = new JTextArea();
+	scrollPane_2.setViewportView(tfGrupotablista);
 	tfGrupotablista.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	tfGrupotablista.setBounds(10, 215, 578, 131);
-	tabGrupo.add(tfGrupotablista);
 	tfGrupotablista.setColumns(10);
+	GrupoController gc= new GrupoController( tfcodigo, tfgrupomatricula,tfpGrupoprofnome,tfgrupoaareprof,txGrupotema, tfGrupora1, texGruponome1, tfGrupotablista);
 	
 	JButton btnBuscarGrupo = new JButton("Buscar/grupo");
 	btnBuscarGrupo.setToolTipText("BuscarGrupo");
@@ -279,7 +293,6 @@ public class Tela extends JFrame {
 	texGruponome1.setColumns(10);
 	texGruponome1.setBounds(384, 150, 204, 26);
 	tabGrupo.add(texGruponome1);
-	GrupoController gc= new GrupoController( tfcodigo, tfgrupomatricula,tfpGrupoprofnome,tfgrupoaareprof,txGrupotema, tfGrupora1, texGruponome1, tfGrupotablista);
 	
 	JButton btngrupobuscarprof = new JButton("Buscar/Professor");
 	btngrupobuscarprof.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -289,6 +302,103 @@ public class Tela extends JFrame {
 	JButton btnGrupoLimpar = new JButton("Limpar/Tela");
 	btnGrupoLimpar.setBounds(462, 11, 112, 23);
 	tabGrupo.add(btnGrupoLimpar);
+	
+	JPanel Orientador = new JPanel();
+	Orientador.setToolTipText("");
+	tabbedPane.addTab("Agenda", null, Orientador, "Orientação e Agendamento de Encontros");
+	Orientador.setLayout(null);
+	
+	JLabel lblNewLabel_1 = new JLabel("CodGrupo:");
+	lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	lblNewLabel_1.setToolTipText("Codigo do Grupo");
+	lblNewLabel_1.setBounds(10, 46, 78, 30);
+	Orientador.add(lblNewLabel_1);
+	
+	texAgendaCodGrupo = new JTextField();
+	texAgendaCodGrupo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	texAgendaCodGrupo.setBounds(84, 48, 100, 30);
+	Orientador.add(texAgendaCodGrupo);
+	texAgendaCodGrupo.setColumns(10);
+	
+	JLabel lblNewLabel_2 = new JLabel("Data:");
+	lblNewLabel_2.setToolTipText("Data da Orientação");
+	lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	lblNewLabel_2.setBounds(10, 101, 78, 51);
+	Orientador.add(lblNewLabel_2);
+	
+	textAgendaData = new JTextField();
+	textAgendaData.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	textAgendaData.setBounds(84, 108, 100, 30);
+	Orientador.add(textAgendaData);
+	textAgendaData.setColumns(10);
+	
+	JLabel lblNewLabel_3 = new JLabel("Tema:");
+	lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	lblNewLabel_3.setBounds(352, 51, 68, 20);
+	Orientador.add(lblNewLabel_3);
+	
+	JLabel lblNewLabel_4 = new JLabel("Orientador:");
+	lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	lblNewLabel_4.setBounds(318, 91, 88, 27);
+	Orientador.add(lblNewLabel_4);
+	
+	JLabel lblNewLabel_5 = new JLabel("Integrantes :");
+	lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	lblNewLabel_5.setBounds(310, 138, 88, 30);
+	Orientador.add(lblNewLabel_5);
+	
+	JLabel lblNewLabel_6 = new JLabel("Orientação:");
+	lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	lblNewLabel_6.setBounds(10, 163, 78, 30);
+	Orientador.add(lblNewLabel_6);
+	
+	JTextArea textAgendaTema = new JTextArea();
+	textAgendaTema.setFont(new Font("Monospaced", Font.PLAIN, 15));
+	textAgendaTema.setBounds(401, 51, 168, 30);
+	Orientador.add(textAgendaTema);
+	
+	JTextArea txtabAgendaOrientador = new JTextArea();
+	txtabAgendaOrientador.setFont(new Font("Monospaced", Font.PLAIN, 15));
+	txtabAgendaOrientador.setBounds(401, 94, 168, 24);
+	Orientador.add(txtabAgendaOrientador);
+	
+	JScrollPane scrollPane_3 = new JScrollPane();
+	scrollPane_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+	scrollPane_3.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	scrollPane_3.setBounds(401, 129, 168, 88);
+	Orientador.add(scrollPane_3);
+	
+	JTextArea txtabAgendaIntregrantes = new JTextArea();
+	scrollPane_3.setViewportView(txtabAgendaIntregrantes);
+	txtabAgendaIntregrantes.setFont(new Font("Monospaced", Font.PLAIN, 15));
+	
+	JScrollPane scrollPane = new JScrollPane();
+	scrollPane.setBounds(10, 247, 564, 97);
+	Orientador.add(scrollPane);
+	
+	JTextArea txtabBuscarOrientação = new JTextArea();
+	txtabBuscarOrientação.setToolTipText("");
+	scrollPane.setViewportView(txtabBuscarOrientação);
+	
+	JButton btnAgendaCadastrar = new JButton("Salvar");
+	btnAgendaCadastrar.setToolTipText("Salvar Orientação");
+	btnAgendaCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	btnAgendaCadastrar.setBounds(480, 357, 89, 23);
+	Orientador.add(btnAgendaCadastrar);
+	
+	JButton btnAgendaBuscar = new JButton("Buscar");
+	btnAgendaBuscar.setToolTipText("Buscar Grupo");
+	btnAgendaBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	btnAgendaBuscar.setBounds(84, 359, 89, 23);
+	Orientador.add(btnAgendaBuscar);
+	
+	JScrollPane scrollPane_1 = new JScrollPane();
+	scrollPane_1.setBounds(84, 170, 147, 47);
+	Orientador.add(scrollPane_1);
+	
+	textAgendaOrientação = new JTextField();
+	scrollPane_1.setViewportView(textAgendaOrientação);
+	textAgendaOrientação.setColumns(10);
 	btnBuscarGrupo.addActionListener(gc);
 	btngrupobuscarprof.addActionListener(gc);
 	btnGrupoBuscarAluno.addActionListener(gc);
@@ -297,7 +407,9 @@ public class Tela extends JFrame {
 	btnProfessorcadastro.addActionListener(pc);
 	btnProfessorBuscar.addActionListener(pc);
 	
-
+	Agendacontroller ac = new Agendacontroller(texAgendaCodGrupo, textAgendaData, textAgendaOrientação, textAgendaTema, txtabAgendaOrientador, txtabAgendaIntregrantes);
+	btnAgendaBuscar.addActionListener(ac);
+	btnAgendaCadastrar.addActionListener(ac);
 	
 	}
 }
