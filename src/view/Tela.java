@@ -11,7 +11,6 @@ import controller.Alunocontroller;
 import controller.GrupoController;
 import controller.ProfessorController;
 
-import javax.swing.JLayeredPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -19,16 +18,7 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
-import javax.swing.JList;
-import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JInternalFrame;
-import javax.swing.JDesktopPane;
-import javax.swing.JScrollBar;
-import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
 public class Tela extends JFrame {
@@ -248,7 +238,7 @@ public class Tela extends JFrame {
 	scrollPane_2.setViewportView(tfGrupotablista);
 	tfGrupotablista.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	tfGrupotablista.setColumns(10);
-	GrupoController gc= new GrupoController( tfcodigo, tfgrupomatricula,tfpGrupoprofnome,tfgrupoaareprof,txGrupotema, tfGrupora1, texGruponome1, tfGrupotablista);
+	
 	
 	JButton btnBuscarGrupo = new JButton("Buscar/grupo");
 	btnBuscarGrupo.setToolTipText("BuscarGrupo");
@@ -298,7 +288,7 @@ public class Tela extends JFrame {
 	btngrupobuscarprof.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	btngrupobuscarprof.setBounds(244, 46, 136, 23);
 	tabGrupo.add(btngrupobuscarprof);
-	
+	GrupoController gc= new GrupoController(tfcodigo, tfgrupomatricula,tfpGrupoprofnome,tfgrupoaareprof,txGrupotema, tfGrupora1, texGruponome1, tfGrupotablista);
 	JButton btnGrupoLimpar = new JButton("Limpar/Tela");
 	btnGrupoLimpar.setBounds(462, 11, 112, 23);
 	tabGrupo.add(btnGrupoLimpar);
@@ -407,7 +397,7 @@ public class Tela extends JFrame {
 	btnProfessorcadastro.addActionListener(pc);
 	btnProfessorBuscar.addActionListener(pc);
 	
-	Agendacontroller ac = new Agendacontroller(texAgendaCodGrupo, textAgendaData, textAgendaOrientação, textAgendaTema, txtabAgendaOrientador, txtabAgendaIntregrantes);
+	Agendacontroller ac = new Agendacontroller(texAgendaCodGrupo, textAgendaData, textAgendaOrientação, textAgendaTema, txtabAgendaOrientador, txtabAgendaIntregrantes,txtabBuscarOrientação);
 	btnAgendaBuscar.addActionListener(ac);
 	btnAgendaCadastrar.addActionListener(ac);
 	

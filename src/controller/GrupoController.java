@@ -101,14 +101,21 @@ public class GrupoController  implements ActionListener{
 	gr.cod = txGrupocod.getText();
 	
 	p = buscarGrupo(gr.cod);
+	if(gr.nome!=null) {
 	int tm = p.size();
 	StringBuffer buffer = new StringBuffer();
 	if(tm>0) {
 	for(int i = 0 ; i< tm ;i++) {
 		Grupo g = (Grupo)p.get(i);
-		buffer.append("Cod " + g.cod+ "  Prof "+ g.profnome+ "  Tema: "+g.tema+"\n\r"+ " RA: "+ g.ra+ "  Nome:  "+ g.nome+ "\n\r");
+		buffer.append("Cod " + g.cod+ "  Prof "+ g.profnome+ "  Tema: "+g.tema);
+		buffer.append("\n\r");
+		buffer.append(" RA: "+ g.ra+ "  Nome:  "+ g.nome);
+		buffer.append("\n\r");
 	}
 	tfGrupotab.setText(buffer.toString());
+	}
+	}else {
+		tfGrupotab.setText("Grupo não encontrado");
 	}
 }
 

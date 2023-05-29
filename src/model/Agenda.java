@@ -10,7 +10,7 @@ public class Agenda {
 	@Override
 	public String toString() {
 		return  cod + ";"+  data + ";" + Orientação + "; " + Orientador
-				+ ";" + tema + ";" + integrantes ;
+				+ ";" + tema + ";" +integrantes  ;
 	}
 	
 	

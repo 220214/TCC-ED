@@ -31,14 +31,14 @@ public class Agendacontroller implements ActionListener{
 	
 
 	public Agendacontroller(JTextField texAgendaCodGrupo, JTextField textAgendaData, JTextField textAgendaOrientação,
-			JTextArea textAgendaTema, JTextArea txtabAgendaOrientador, JTextArea txtabAgendaIntregrantes) {
+			JTextArea textAgendaTema, JTextArea txtabAgendaOrientador, JTextArea txtabAgendaIntregrantes,JTextArea txtabBuscarOrientação) {
 		this.texAgendaCodGrupo = texAgendaCodGrupo;
 		this.textAgendaData = textAgendaData;
 		this.textAgendaOrientação = textAgendaOrientação;
 		this.textAgendaTema = textAgendaTema;
 		this.txtabAgendaOrientador = txtabAgendaOrientador;
 		this.txtabAgendaIntregrantes = txtabAgendaIntregrantes;
-		
+		this.txtabBuscarOrientação= txtabBuscarOrientação;
 	}
 
 	
@@ -82,24 +82,22 @@ public class Agendacontroller implements ActionListener{
 			for (int i=0; i<tm; i++) {
 				Grupo g = (Grupo)p.get(i);
 				buffer.append( g.nome );
+				buffer.append("\n\r" );
 				tema =g.tema;
 				or = g.profnome;
 			}
 			textAgendaTema.setText(tema);
 			txtabAgendaOrientador.setText(or);
 			txtabAgendaIntregrantes.setText(buffer.toString()); 
-			
+			Pilha pi = new Pilha ();
+			pi = buscarorentação(a.cod);
+					txtabBuscarOrientação.setText(pi.exibir());
+		}else {
+			txtabBuscarOrientação.setText("Grupo não encontrado");
 		}
-		Pilha pi = new Pilha ();
-		pi = buscarorentação(a.cod);
-		int tam =pi.size();
-		//StringBuffer buffer1 = new StringBuffer();
-		if(tam>0) {
-			for(int i=0;i<tam;i++) {
-			textAgendaOrientação.setText(pi.pop());
+		
 			}
-		}
-	}
+
 
 
 
@@ -116,7 +114,7 @@ public class Agendacontroller implements ActionListener{
 				String [] vetlinha =linha.split(";");
 				
 				if(vetlinha[0].equals(cod)){
-					Agenda a = new Agenda();
+					Agenda  a = new Agenda();
 					a.cod= vetlinha [0];
 					a.data = vetlinha[1];
 					a.Orientação = vetlinha[2];
@@ -125,6 +123,7 @@ public class Agendacontroller implements ActionListener{
 					a.integrantes=vetlinha[5];
 					
 					Or.push(a.Orientação);
+					
 				}
 				linha=buffer.readLine();
 			}
