@@ -63,7 +63,7 @@ private void excluir() {
 
 private void buscar() throws IOException {
 	Aluno al = new Aluno();
-	al.ra =tfAlunora.getText();
+	al.ra =tfAlunora.getText().trim();
 	al = buscaAluno(al);
 	if(al.nome!=null) {
 		tabAluno.setText("RA: "+ al.ra + " \t Nome : "+ al.nome);

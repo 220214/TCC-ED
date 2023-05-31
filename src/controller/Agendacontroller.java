@@ -64,8 +64,27 @@ public class Agendacontroller implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
-		
+		if(cmd.equals("Limpar Tela")) {
+			Limpar();
+		}
+		if(cmd.equals("Lista Orientação")) {
+			
+		}
 	}
+
+
+
+	private void Limpar() {
+		textAgendaTema.setText("");
+		txtabAgendaOrientador.setText("");
+		txtabAgendaIntregrantes.setText(""); 
+		texAgendaCodGrupo.setText("");
+		txtabBuscarOrientação.setText("");
+		textAgendaOrientação.setText(" ");
+	}
+
+
+
 
 
 

@@ -171,11 +171,7 @@ public class Tela extends JFrame {
 		TabProfessor.add(texProfessorMatricula);
 		texProfessorMatricula.setColumns(10);
 	
-	Alunocontroller alc = new Alunocontroller(tfAlunora, tfAlunonome, taAlunolista);
-	btnAlunocadastrar.addActionListener(alc);
-	btnAlunobuscar.addActionListener(alc);
 	
-	ProfessorController pc = new ProfessorController(texProfessornome, textProfessorarea, texProfessorMatricula, taProfessorlista);
 	
 	JPanel tabGrupo = new JPanel();
 	tabbedPane.addTab("Grupo", null, tabGrupo, "Cadastro do Grupo");
@@ -288,7 +284,7 @@ public class Tela extends JFrame {
 	btngrupobuscarprof.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	btngrupobuscarprof.setBounds(244, 46, 136, 23);
 	tabGrupo.add(btngrupobuscarprof);
-	GrupoController gc= new GrupoController(tfcodigo, tfgrupomatricula,tfpGrupoprofnome,tfgrupoaareprof,txGrupotema, tfGrupora1, texGruponome1, tfGrupotablista);
+	
 	JButton btnGrupoLimpar = new JButton("Limpar/Tela");
 	btnGrupoLimpar.setBounds(462, 11, 112, 23);
 	tabGrupo.add(btnGrupoLimpar);
@@ -362,14 +358,6 @@ public class Tela extends JFrame {
 	scrollPane_3.setViewportView(txtabAgendaIntregrantes);
 	txtabAgendaIntregrantes.setFont(new Font("Monospaced", Font.PLAIN, 15));
 	
-	JScrollPane scrollPane = new JScrollPane();
-	scrollPane.setBounds(10, 247, 564, 97);
-	Orientador.add(scrollPane);
-	
-	JTextArea txtabBuscarOrientação = new JTextArea();
-	txtabBuscarOrientação.setToolTipText("");
-	scrollPane.setViewportView(txtabBuscarOrientação);
-	
 	JButton btnAgendaCadastrar = new JButton("Salvar");
 	btnAgendaCadastrar.setToolTipText("Salvar Orientação");
 	btnAgendaCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -389,6 +377,35 @@ public class Tela extends JFrame {
 	textAgendaOrientação = new JTextField();
 	scrollPane_1.setViewportView(textAgendaOrientação);
 	textAgendaOrientação.setColumns(10);
+	
+	JButton btnAgendaLimpar = new JButton("Limpar Tela");
+	btnAgendaLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	btnAgendaLimpar.setBounds(272, 355, 110, 25);
+	Orientador.add(btnAgendaLimpar);
+	
+	JButton btnAgendaLista = new JButton("Lista Orientação");
+	btnAgendaLista.setBounds(241, 194, 122, 23);
+	Orientador.add(btnAgendaLista);
+	
+	
+	
+	ProfessorController pc = new ProfessorController(texProfessornome, textProfessorarea, texProfessorMatricula, taProfessorlista);
+	GrupoController gc= new GrupoController(tfcodigo, tfgrupomatricula,tfpGrupoprofnome,tfgrupoaareprof,txGrupotema, tfGrupora1, texGruponome1, tfGrupotablista);
+	Alunocontroller alc = new Alunocontroller(tfAlunora, tfAlunonome, taAlunolista);
+	
+	JScrollPane scrollPane = new JScrollPane();
+	scrollPane.setBounds(12, 247, 562, 84);
+	Orientador.add(scrollPane);
+	
+	JTextArea txtabBuscarOrientação = new JTextArea();
+	scrollPane.setViewportView(txtabBuscarOrientação);
+	txtabBuscarOrientação.setToolTipText("");
+	
+	Agendacontroller ac = new Agendacontroller(texAgendaCodGrupo, textAgendaData, textAgendaOrientação, textAgendaTema, txtabAgendaOrientador, txtabAgendaIntregrantes,txtabBuscarOrientação);
+	
+	btnAlunocadastrar.addActionListener(alc);
+	btnAlunobuscar.addActionListener(alc);
+	
 	btnBuscarGrupo.addActionListener(gc);
 	btngrupobuscarprof.addActionListener(gc);
 	btnGrupoBuscarAluno.addActionListener(gc);
@@ -397,7 +414,11 @@ public class Tela extends JFrame {
 	btnProfessorcadastro.addActionListener(pc);
 	btnProfessorBuscar.addActionListener(pc);
 	
-	Agendacontroller ac = new Agendacontroller(texAgendaCodGrupo, textAgendaData, textAgendaOrientação, textAgendaTema, txtabAgendaOrientador, txtabAgendaIntregrantes,txtabBuscarOrientação);
+	
+	
+	btnAgendaLimpar.addActionListener(ac);
+	
+	
 	btnAgendaBuscar.addActionListener(ac);
 	btnAgendaCadastrar.addActionListener(ac);
 	

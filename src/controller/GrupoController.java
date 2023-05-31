@@ -101,7 +101,7 @@ public class GrupoController  implements ActionListener{
 	gr.cod = txGrupocod.getText();
 	
 	p = buscarGrupo(gr.cod);
-	if(gr.nome!=null) {
+	if(p!=null) {
 	int tm = p.size();
 	StringBuffer buffer = new StringBuffer();
 	if(tm>0) {
@@ -114,10 +114,11 @@ public class GrupoController  implements ActionListener{
 	}
 	tfGrupotab.setText(buffer.toString());
 	}
+	
 	}else {
-		tfGrupotab.setText("Grupo não encontrado");
+	tfGrupotab.setText("Grupo não encontrado");
 	}
-}
+	}
 
 
 	private Lista buscarGrupo(String cod) throws IOException {
@@ -131,20 +132,21 @@ public class GrupoController  implements ActionListener{
 			String linha = buffer.readLine();
 			while(linha!=null) {
 				String [] vetlinha =linha.split(";");
-				
-				if(vetlinha[0].equals(cod)){
-					Grupo gr = new Grupo();
-					gr.cod= vetlinha [0];
-					gr.profmatr = vetlinha[1];
-					gr.profnome = vetlinha[2];
-					gr.pfarea = vetlinha[3];
-					gr.tema =vetlinha[4];
-					gr.nome =vetlinha[5];
-					gr.ra = vetlinha[6];
-					
-					
-					
-					grupo.addFirst(gr);
+				if (vetlinha.length > 1) {
+					if(vetlinha[0].equals(cod)){
+						Grupo gr = new Grupo();
+						gr.cod= vetlinha [0];
+						gr.profmatr = vetlinha[1];
+						gr.profnome = vetlinha[2];
+						gr.pfarea = vetlinha[3];
+						gr.tema =vetlinha[4];
+						gr.nome =vetlinha[5];
+						gr.ra = vetlinha[6];
+						
+						
+						
+						grupo.addFirst(gr);
+					}
 				}
 				linha=buffer.readLine();
 			}
