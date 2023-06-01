@@ -119,7 +119,7 @@ public class ProfessorController implements ActionListener{
 		pf.Area =textProfessorarea.getText();
 		pf.SubArea = texProfessorsub.getText();
 		
-		System.out.println(texProfessorsub.getText());
+		
 		CadastroProfessor(pf.toString());
 		texProfessornome.setText("");
 		textProfessorarea.setText("");

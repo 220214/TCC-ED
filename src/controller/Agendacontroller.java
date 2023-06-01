@@ -131,6 +131,9 @@ public class Agendacontroller implements ActionListener{
 			isr.close();
 			fis.close();
 	}
+		if(l.isEmpty()==true) {
+			l.addFirst(" ");
+		}
 		return l;
 	}
 	
