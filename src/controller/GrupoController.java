@@ -26,11 +26,12 @@ public class GrupoController  implements ActionListener{
 	private JTextField txGrupotema;
 	private JTextField txGrupora1;
 	private JTextField txGruponome1;
+	private JTextField txGruposubarea;
 	private JTextArea tfGrupotab;
 	
 
 	public GrupoController(JTextField txGrupocod, JTextField txGrupomatr, JTextField txGrupoprof, JTextField txGrupoare,
-			JTextField txGrupotema, JTextField txGrupora1, JTextField txGruponome1,JTextArea tfGrupotab) {
+			JTextField txGrupotema, JTextField txGrupora1, JTextField txGruponome1,JTextArea tfGrupotab,JTextField txGruposubarea) {
 	
 		this.txGrupocod = txGrupocod;
 		this.txGrupomatr = txGrupomatr;
@@ -40,6 +41,7 @@ public class GrupoController  implements ActionListener{
 		this.txGrupora1 = txGrupora1;
 		this.txGruponome1 = txGruponome1;
 		this. tfGrupotab = tfGrupotab;
+		this.txGruposubarea =txGruposubarea;
 	}
 
 
@@ -91,6 +93,7 @@ public class GrupoController  implements ActionListener{
 		txGrupora1.setText("");
 		txGruponome1.setText("");
 		tfGrupotab.setText("");
+		txGruposubarea.setText("");
 		            
 	}
 
@@ -107,7 +110,7 @@ public class GrupoController  implements ActionListener{
 	if(tm>0) {
 	for(int i = 0 ; i< tm ;i++) {
 		Grupo g = (Grupo)p.get(i);
-		buffer.append("Cod " + g.cod+ "  Prof "+ g.profnome+ "  Tema: "+g.tema);
+		buffer.append("Cod " + g.cod+ "  Prof "+ g.profnome+ "  Tema: "+g.tema + " SubArea: "+ g.subarea);
 		buffer.append("\n\r");
 		buffer.append(" RA: "+ g.ra+ "  Nome:  "+ g.nome);
 		buffer.append("\n\r");
@@ -142,6 +145,7 @@ public class GrupoController  implements ActionListener{
 						gr.tema =vetlinha[4];
 						gr.nome =vetlinha[5];
 						gr.ra = vetlinha[6];
+						gr.subarea=vetlinha[7];
 						
 						
 						
@@ -203,6 +207,7 @@ public class GrupoController  implements ActionListener{
 		if(pf.nome!=null) {
 			txGrupoprof.setText(pf.nome); 
 			txGrupoare.setText(pf.Area);
+			txGruposubarea.setText(pf.SubArea);
 		}else {
 			tfGrupotab.setText("Professor  não encontrado ");
 			
@@ -227,6 +232,7 @@ public class GrupoController  implements ActionListener{
 				if(vetlinha[0].equals(pf.matricula)) {
 					pf.nome = vetlinha[1];
 					pf.Area=vetlinha [2];
+					pf.SubArea=vetlinha[3];
 					break;
 				}
 				linha=buffer.readLine();
@@ -237,6 +243,7 @@ public class GrupoController  implements ActionListener{
 		}
 		return pf;
 	}
+	
 	
 
 
@@ -249,7 +256,9 @@ public class GrupoController  implements ActionListener{
 		gr.nome =txGruponome1.getText();
 		gr.tema =txGrupotema.getText();
 		gr.pfarea = txGrupoare.getText();
+		gr.subarea = txGruposubarea.getText();
 		CadastrarGrupo(gr.toString());
+		tfGrupotab.setText("Grupo cadastrado ");
 	
 		
 	}

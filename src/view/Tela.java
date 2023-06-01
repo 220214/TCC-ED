@@ -41,6 +41,8 @@ public class Tela extends JFrame {
 	private JTextField texAgendaCodGrupo;
 	private JTextField textAgendaData;
 	private JTextField textAgendaOrientação;
+	private JTextField texProfessorsub;
+	private JTextField txGruposubarea;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -115,61 +117,77 @@ public class Tela extends JFrame {
 		JTextArea taAlunolista = new JTextArea();
 		tabelaAluno.setViewportView(taAlunolista);
 		taAlunolista.setFont(new Font("Monospaced", Font.PLAIN, 13));
-		
-		JPanel TabProfessor = new JPanel();
-		tabbedPane.addTab("Professor", null, TabProfessor, "Cadastro de Professor");
-		TabProfessor.setLayout(null);
-		
-		JLabel lblProfessornome = new JLabel("Nome:");
-		lblProfessornome.setToolTipText("Nome do Professor");
-		lblProfessornome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblProfessornome.setBounds(10, 67, 46, 29);
-		TabProfessor.add(lblProfessornome);
-		
-		JLabel lblProfessorarea = new JLabel("Área de Pesquisa:");
-		lblProfessorarea.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblProfessorarea.setBounds(10, 107, 113, 29);
-		TabProfessor.add(lblProfessorarea);
-		
-		texProfessornome = new JTextField();
-		texProfessornome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		texProfessornome.setBounds(66, 67, 331, 29);
-		TabProfessor.add(texProfessornome);
-		texProfessornome.setColumns(10);
-		
-		textProfessorarea = new JTextField();
-		textProfessorarea.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textProfessorarea.setBounds(124, 107, 273, 29);
-		TabProfessor.add(textProfessorarea);
-		textProfessorarea.setColumns(10);
-		
-		JButton btnProfessorcadastro = new JButton("Salvar");
-		btnProfessorcadastro.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnProfessorcadastro.setBounds(469, 67, 107, 29);
-		TabProfessor.add(btnProfessorcadastro);
-		
-		JButton btnProfessorBuscar = new JButton("Buscar");
-		btnProfessorBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnProfessorBuscar.setBounds(469, 112, 107, 29);
-		TabProfessor.add(btnProfessorBuscar);
-		
-		JScrollPane tabProfessor = new JScrollPane();
-		tabProfessor.setBounds(10, 164, 579, 154);
-		TabProfessor.add(tabProfessor);
-		
-		JTextArea taProfessorlista = new JTextArea();
-		tabProfessor.setViewportView(taProfessorlista);
-		JLabel lblNewLabel = new JLabel("Matricula:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setToolTipText("Matricula do Professor");
-		lblNewLabel.setBounds(10, 30, 68, 26);
-		TabProfessor.add(lblNewLabel);
-		
-		texProfessorMatricula = new JTextField();
-		texProfessorMatricula.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		texProfessorMatricula.setBounds(88, 30, 96, 25);
-		TabProfessor.add(texProfessorMatricula);
-		texProfessorMatricula.setColumns(10);
+	
+	JPanel TabProfessor = new JPanel();
+	tabbedPane.addTab("Professor", null, TabProfessor, "Cadastro de Professor");
+	TabProfessor.setLayout(null);
+	
+	JLabel lblProfessornome = new JLabel("Nome:");
+	lblProfessornome.setToolTipText("Nome do Professor");
+	lblProfessornome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	lblProfessornome.setBounds(202, 29, 46, 29);
+	TabProfessor.add(lblProfessornome);
+	
+	JLabel lblProfessorarea = new JLabel("Área de Pesquisa:");
+	lblProfessorarea.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	lblProfessorarea.setBounds(10, 67, 113, 29);
+	TabProfessor.add(lblProfessorarea);
+	
+	texProfessornome = new JTextField();
+	texProfessornome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	texProfessornome.setBounds(258, 29, 331, 29);
+	TabProfessor.add(texProfessornome);
+	texProfessornome.setColumns(10);
+	
+	textProfessorarea = new JTextField();
+	textProfessorarea.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	textProfessorarea.setBounds(124, 69, 273, 29);
+	TabProfessor.add(textProfessorarea);
+	textProfessorarea.setColumns(10);
+	
+	JButton btnProfessorcadastro = new JButton("Salvar");
+	btnProfessorcadastro.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	btnProfessorcadastro.setBounds(469, 67, 107, 29);
+	TabProfessor.add(btnProfessorcadastro);
+	
+	JButton btnProfessorBuscar = new JButton("Buscar");
+	btnProfessorBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	btnProfessorBuscar.setBounds(469, 112, 107, 29);
+	TabProfessor.add(btnProfessorBuscar);
+	
+	JScrollPane tabProfessor = new JScrollPane();
+	tabProfessor.setBounds(10, 164, 579, 154);
+	TabProfessor.add(tabProfessor);
+	
+	JTextArea taProfessorlista = new JTextArea();
+	tabProfessor.setViewportView(taProfessorlista);
+	JLabel lblNewLabel = new JLabel("Matricula:");
+	lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	lblNewLabel.setToolTipText("Matricula do Professor");
+	lblNewLabel.setBounds(10, 30, 68, 26);
+	TabProfessor.add(lblNewLabel);
+	
+	texProfessorMatricula = new JTextField();
+	texProfessorMatricula.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	texProfessorMatricula.setBounds(88, 30, 96, 25);
+	TabProfessor.add(texProfessorMatricula);
+	texProfessorMatricula.setColumns(10);
+	
+	
+	
+	
+	
+	JLabel lblNsubarea = new JLabel("SubÁrea:");
+	lblNsubarea.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	lblNsubarea.setBounds(10, 121, 96, 20);
+	TabProfessor.add(lblNsubarea);
+	
+	texProfessorsub = new JTextField();
+	texProfessorsub.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	texProfessorsub.setBounds(88, 118, 260, 23);
+	TabProfessor.add(texProfessorsub);
+	texProfessorsub.setColumns(10);
+	
 	
 	
 	
@@ -217,7 +235,7 @@ public class Tela extends JFrame {
 	
 	tfGrupora1 = new JTextField();
 	tfGrupora1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	tfGrupora1.setBounds(96, 150, 204, 26);
+	tfGrupora1.setBounds(96, 174, 204, 26);
 	tabGrupo.add(tfGrupora1);
 	tfGrupora1.setColumns(10);
 	
@@ -249,13 +267,13 @@ public class Tela extends JFrame {
 	
 	JLabel lblprofessorra_1 = new JLabel("RA Aluno1:");
 	lblprofessorra_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	lblprofessorra_1.setBounds(10, 142, 84, 36);
+	lblprofessorra_1.setBounds(10, 168, 84, 36);
 	tabGrupo.add(lblprofessorra_1);
 	
 	JButton btnGrupoBuscarAluno = new JButton("Buscar/Aluno");
 	btnGrupoBuscarAluno.setToolTipText("Informe RA");
 	btnGrupoBuscarAluno.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	btnGrupoBuscarAluno.setBounds(309, 113, 149, 23);
+	btnGrupoBuscarAluno.setBounds(10, 142, 149, 23);
 	tabGrupo.add(btnGrupoBuscarAluno);
 	
 	JLabel lblNewmatricula = new JLabel("Matricula:");
@@ -271,13 +289,13 @@ public class Tela extends JFrame {
 	
 	JLabel lblGruponome1 = new JLabel(" Aluno1:");
 	lblGruponome1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	lblGruponome1.setBounds(310, 144, 84, 36);
+	lblGruponome1.setBounds(310, 164, 84, 36);
 	tabGrupo.add(lblGruponome1);
 	
 	texGruponome1 = new JTextField();
 	texGruponome1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	texGruponome1.setColumns(10);
-	texGruponome1.setBounds(384, 150, 204, 26);
+	texGruponome1.setBounds(385, 174, 204, 26);
 	tabGrupo.add(texGruponome1);
 	
 	JButton btngrupobuscarprof = new JButton("Buscar/Professor");
@@ -387,11 +405,16 @@ public class Tela extends JFrame {
 	btnAgendaLista.setBounds(241, 194, 122, 23);
 	Orientador.add(btnAgendaLista);
 	
+	JLabel lblNewLabel_7 = new JLabel("SubÁrea");
+	lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	lblNewLabel_7.setBounds(320, 113, 89, 24);
+	tabGrupo.add(lblNewLabel_7);
 	
+	txGruposubarea = new JTextField();
+	txGruposubarea.setBounds(413, 116, 175, 24);
+	tabGrupo.add(txGruposubarea);
+	txGruposubarea.setColumns(10);
 	
-	ProfessorController pc = new ProfessorController(texProfessornome, textProfessorarea, texProfessorMatricula, taProfessorlista);
-	GrupoController gc= new GrupoController(tfcodigo, tfgrupomatricula,tfpGrupoprofnome,tfgrupoaareprof,txGrupotema, tfGrupora1, texGruponome1, tfGrupotablista);
-	Alunocontroller alc = new Alunocontroller(tfAlunora, tfAlunonome, taAlunolista);
 	
 	JScrollPane scrollPane = new JScrollPane();
 	scrollPane.setBounds(12, 247, 562, 84);
@@ -400,6 +423,13 @@ public class Tela extends JFrame {
 	JTextArea txtabBuscarOrientação = new JTextArea();
 	scrollPane.setViewportView(txtabBuscarOrientação);
 	txtabBuscarOrientação.setToolTipText("");
+	
+	GrupoController gc= new GrupoController(tfcodigo, tfgrupomatricula,tfpGrupoprofnome,tfgrupoaareprof,txGrupotema, tfGrupora1, texGruponome1, tfGrupotablista,txGruposubarea);
+	
+	ProfessorController pc = new ProfessorController(texProfessornome, textProfessorarea, texProfessorMatricula, taProfessorlista,texProfessorsub);
+	Alunocontroller alc = new Alunocontroller(tfAlunora, tfAlunonome, taAlunolista);
+	btnProfessorcadastro.addActionListener(pc);
+	btnProfessorBuscar.addActionListener(pc);
 	
 	Agendacontroller ac = new Agendacontroller(texAgendaCodGrupo, textAgendaData, textAgendaOrientação, textAgendaTema, txtabAgendaOrientador, txtabAgendaIntregrantes,txtabBuscarOrientação);
 	
@@ -411,14 +441,12 @@ public class Tela extends JFrame {
 	btnGrupoBuscarAluno.addActionListener(gc);
 	btnSalvarGrupo.addActionListener(gc);
 	btnGrupoLimpar.addActionListener(gc);
-	btnProfessorcadastro.addActionListener(pc);
-	btnProfessorBuscar.addActionListener(pc);
 	
 	
 	
 	btnAgendaLimpar.addActionListener(ac);
 	
-	
+	btnAgendaLista.addActionListener(ac);
 	btnAgendaBuscar.addActionListener(ac);
 	btnAgendaCadastrar.addActionListener(ac);
 	

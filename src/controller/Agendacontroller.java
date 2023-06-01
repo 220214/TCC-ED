@@ -68,9 +68,75 @@ public class Agendacontroller implements ActionListener{
 			Limpar();
 		}
 		if(cmd.equals("Lista Orientação")) {
-			
+			try {
+				listaOri();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
+
+
+
+	private void listaOri() throws Exception {
+		Lista l = new Lista();
+		Agenda a = new Agenda();
+		a.cod = texAgendaCodGrupo.getText();
+		
+		l= buscarLista(a.cod);
+		int tm = l.size();
+		StringBuffer buffer= new StringBuffer();
+		if(tm>0) {
+		for(int i=tm-1 ; i>=0;i--) {
+			buffer.append(l.get(i));
+			buffer.append("\n\r" );
+			
+		}
+		txtabBuscarOrientação.setText(buffer.toString());
+		
+	}
+	}
+
+
+
+
+
+
+	private Lista buscarLista(String cod) throws Exception {
+		Lista l = new Lista ();
+		String path = System.getProperty("user.home") + File.separator +"Sistema de Cadastro";
+		File arq = new File(path,"Agenda.csv");
+		if(arq.exists()&& arq.isFile()) {
+			FileInputStream fis = new FileInputStream(arq);
+			InputStreamReader isr =new InputStreamReader(fis);
+			BufferedReader buffer =new BufferedReader(isr);
+			String linha = buffer.readLine();
+			while(linha!=null) {
+				String [] vetlinha =linha.split(";");
+				
+				if(vetlinha[0].equals(cod)){
+					
+					if(l.isEmpty()==true) {
+					
+					l.addFirst(vetlinha[2]);
+					
+					}else {
+						l.addLast(vetlinha[2]);
+					}
+				}
+				linha=buffer.readLine();
+			}
+			buffer.close();
+			isr.close();
+			fis.close();
+	}
+		return l;
+	}
+	
+
+
+
 
 
 
@@ -81,6 +147,7 @@ public class Agendacontroller implements ActionListener{
 		texAgendaCodGrupo.setText("");
 		txtabBuscarOrientação.setText("");
 		textAgendaOrientação.setText(" ");
+		textAgendaData.setText(" "); 
 	}
 
 
@@ -120,7 +187,7 @@ public class Agendacontroller implements ActionListener{
 
 
 
-	private Pilha buscarorentação(String cod) throws IOException {
+	private Pilha buscarorentação(String cod) throws Exception {
 		Pilha Or = new Pilha();
 		String path = System.getProperty("user.home") + File.separator +"Sistema de Cadastro";
 		File arq = new File(path,"Agenda.csv");
@@ -143,6 +210,7 @@ public class Agendacontroller implements ActionListener{
 					
 					Or.push(a.Orientação);
 					
+					
 				}
 				linha=buffer.readLine();
 			}
@@ -150,6 +218,10 @@ public class Agendacontroller implements ActionListener{
 			isr.close();
 			fis.close();
 	}
+	if(Or.size()==0) {
+		Or.push("Vazia");
+	}
+		
 		return Or;
 	}
 
@@ -209,6 +281,13 @@ public class Agendacontroller implements ActionListener{
 		a.Orientador =txtabAgendaOrientador.getText();  
 		a.integrantes =txtabAgendaIntregrantes.getText();
 		CadastrarAgenda(a.toString());
+		textAgendaTema.setText("");
+		txtabAgendaOrientador.setText("");
+		txtabAgendaIntregrantes.setText(""); 
+		texAgendaCodGrupo.setText("");
+		txtabBuscarOrientação.setText("");
+		textAgendaOrientação.setText(" ");
+		textAgendaData.setText(" "); 
 	}
 
 

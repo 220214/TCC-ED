@@ -23,12 +23,15 @@ public class ProfessorController implements ActionListener{
 	private JTextField textProfessorarea;
 	private JTextField texProfessorMatricula;
 	private JTextArea tabProfessor;
+	private JTextField texProfessorsub;
+	
 	Lista lp = new Lista();
-	public ProfessorController(JTextField texProfessornome, JTextField textProfessorarea,JTextField texProfessorMatricula,JTextArea tabProfessor) {
+	public ProfessorController(JTextField texProfessornome, JTextField textProfessorarea,JTextField texProfessorMatricula,JTextArea tabProfessor,JTextField texProfessorsub) {
 		this.texProfessornome = texProfessornome;
 		this.textProfessorarea = textProfessorarea;
 		this.texProfessorMatricula =texProfessorMatricula;
 		this.tabProfessor = tabProfessor;
+		this.texProfessorsub = texProfessorsub;
 		
 	}
 	@Override
@@ -49,21 +52,15 @@ public class ProfessorController implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
-		if(cmd.equals("Excluir")) {
-			excluir();
-		}
-		
+				
 	}
-	private void excluir() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	private void buscar() throws IOException  {
 		Professor pf = new Professor ();
 		pf.matricula = texProfessorMatricula.getText();
 		pf =buscaProfessor(pf);
 		if(pf.nome!=null) {
-			tabProfessor.setText("Matricula: "+ pf.matricula + "\t Nome : "+ pf.nome + "\t Área de pesquisa: " + pf.Area);
+			tabProfessor.setText("Matricula: "+ pf.matricula + "\t Nome : "+ pf.nome + "\t Área de pesquisa: " + pf.Area+"\t SubArea: "+ pf.SubArea);
 		}else {
 			tabProfessor.setText("Professor  não encontrado ");
 			
@@ -85,6 +82,7 @@ public class ProfessorController implements ActionListener{
 				if(vetlinha[0].equals(pf.matricula)) {
 					pf.nome = vetlinha[1];
 					pf.Area=vetlinha [2];
+					pf.SubArea=vetlinha[3];
 					break;
 				}
 				linha=buffer.readLine();
@@ -119,11 +117,14 @@ public class ProfessorController implements ActionListener{
 		pf.matricula = texProfessorMatricula.getText();
 		pf.nome = texProfessornome.getText();
 		pf.Area =textProfessorarea.getText();
+		pf.SubArea = texProfessorsub.getText();
 		
+		System.out.println(texProfessorsub.getText());
 		CadastroProfessor(pf.toString());
 		texProfessornome.setText("");
 		textProfessorarea.setText("");
 		texProfessorMatricula.setText("");
+		texProfessorsub.setText(" ");
 	}
 	
 }

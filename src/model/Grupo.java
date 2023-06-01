@@ -8,10 +8,11 @@ public class Grupo {
 	public String nome;
 	public String ra;
 	public String profnome;
+	public String subarea;
 @Override
 	public String toString() {
 		return cod + ";"  + profmatr +  ";" +profnome  +  ";" + pfarea + ";"+ tema+
-				";" + nome+ ";" + ra+ ";";
+				";" + nome+ ";" + ra+ ";"+subarea;
 	}
 
 	
